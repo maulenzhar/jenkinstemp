@@ -1,5 +1,4 @@
-FROM alpine
-RUN apk add --no-cache curl wget busybox-extras netcat-openbsd python py-pip
-RUN pip install awscli
-RUN apk --purge -v del py-pip
-CMD tail -f /dev/null
+FROM openjdk:13-jdk-alpine3.10
+ARG JAR_FILE=test2.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
